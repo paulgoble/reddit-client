@@ -1,4 +1,5 @@
 import React from 'react'
+import SelectForm from './components/SelectForm'
 import { useGetDataQuery } from './api/apiSlice'
 import './App.css'
 
@@ -24,6 +25,9 @@ function App() {
 
   return (
     <div id="app">
+      <header id="header">
+        <SelectForm />
+      </header>
       {content}
     </div>
   )
