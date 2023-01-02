@@ -3,11 +3,11 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:3000/'
+    baseUrl: 'https://www.reddit.com/'
   }),
   endpoints: (builder) => ({
     getData: builder.query({
-      query: () => '/data',
+      query: (userInput) => `/${userInput}.json`,
       transformResponse: (response) => response.data.children
     }),
   })

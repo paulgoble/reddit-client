@@ -4,19 +4,23 @@ import { useGetDataQuery } from './api/apiSlice'
 import './App.css'
 
 function App() {
+  const [userInput, setUserInput] = React.useState('r/javascript')
+  
   const {
     data: posts,
     isLoading,
     isSuccess,
     isError,
     error
-  } = useGetDataQuery()
+  } = useGetDataQuery(userInput)
+  
 
   let content
   if (isLoading) {
     content = <h2>Loading...</h2>
   } else if (isError) {
     content = <h2>{error.status}</h2>
+    console.log(error)
   } else if (!posts) {
     content = <h2>DATA_ERROR: undefined</h2>
   } else if (isSuccess) {
@@ -26,9 +30,9 @@ function App() {
   return (
     <div id="app">
       <header id="header">
-        <SelectForm />
+        <SelectForm onSelect={setUserInput}/>
       </header>
-      {content}
+      {userInput ? content : null}
     </div>
   )
 }

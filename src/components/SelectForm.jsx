@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SelectForm = () => {
+const SelectForm = ({ onSelect }) => {
   const [value, setValue] = React.useState(0)
 
   const formData = ['r/javascript', 'r/node', 'r/programming', 'r/reactjs', 'r/ubuntuserver','r/webdev']
@@ -11,7 +11,7 @@ const SelectForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log(formData[value])
+    onSelect(formData[value])
   }
 
   return (
