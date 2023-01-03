@@ -1,9 +1,7 @@
 import React from 'react'
 
-const SelectForm = ({ onSelect }) => {
+const SelectForm = ({ onSelect, formData }) => {
   const [value, setValue] = React.useState(0)
-
-  const formData = ['r/javascript', 'r/node', 'r/programming', 'r/reactjs', 'r/ubuntuserver','r/webdev']
 
   const handleChange = (event) => {
     setValue(event.target.value)

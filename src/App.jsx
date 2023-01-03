@@ -3,6 +3,8 @@ import SelectForm from './components/SelectForm'
 import { useGetDataQuery } from './api/apiSlice'
 import './App.css'
 
+const formData = ['r/javascript', 'r/node', 'r/programming', 'r/reactjs', 'r/webdev']
+
 function App() {
   const [userInput, setUserInput] = React.useState('r/javascript')
   
@@ -30,7 +32,7 @@ function App() {
   return (
     <div id="app">
       <header id="header">
-        <SelectForm onSelect={setUserInput}/>
+        <SelectForm onSelect={setUserInput} formData={formData} />
       </header>
       {userInput ? content : null}
     </div>
