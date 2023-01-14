@@ -10,7 +10,14 @@ export const apiSlice = createApi({
       query: (userInput) => `/${userInput}.json`,
       transformResponse: (response) => response.data.children
     }),
+    getPostData: builder.query({
+      query: (userInput) => `/${userInput}.json`,
+      transformResponse: (response) => [
+        ...response[0].data.children, 
+        ...response[1].data.children
+      ]
+    }),
   })
 })
 
-export const { useGetDataQuery } = apiSlice
+export const { useGetDataQuery, useGetPostDataQuery } = apiSlice

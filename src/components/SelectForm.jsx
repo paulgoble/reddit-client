@@ -15,7 +15,6 @@ const SelectForm = ({ onSelect, formData }) => {
   return (
     <form onSubmit={handleSubmit}>
       <label className="form-label">
-        Select by topic:&nbsp;
         <select value={value} onChange={handleChange}>
           {formData.map((data, index) => (
             <option key={index} value={index}>{data}</option>

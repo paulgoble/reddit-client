@@ -1,67 +1,24 @@
 import React from 'react'
 import SelectForm from './components/SelectForm'
-import { useGetDataQuery } from './api/apiSlice'
+import PostListWrapper from './components/PostListWrapper'
 import './App.css'
 
 const formData = ['r/javascript', 'r/node', 'r/programming', 'r/reactjs', 'r/webdev']
 
 function App() {
-  const [userInput, setUserInput] = React.useState('r/javascript')
+  const [userInput, setUserInput] = React.useState(null)
   
-  const {
-    data: posts,
-    isLoading,
-    isSuccess,
-    isError,
-    error
-  } = useGetDataQuery(userInput)
-  
-
-  let content
-  if (isLoading) {
-    content = <h2>Loading...</h2>
-  } else if (isError) {
-    content = <h2>{error.status}</h2>
-    console.log(error)
-  } else if (!posts) {
-    content = <h2>DATA_ERROR: undefined</h2>
-  } else if (isSuccess) {
-    content = <PostList posts={posts} />
-  }
-
   return (
     <div id="app">
       <header id="header">
+        <img height="80px" width="80px"
+            src="/reddit-logo-adjusted.svg"
+            alt="reddit logo"
+            />
         <SelectForm onSelect={setUserInput} formData={formData} />
       </header>
-      {userInput ? content : null}
+      {userInput ? <PostListWrapper userInput={userInput}/> : null}
     </div>
-  )
-}
-
-const PostList = ({ posts }) => (
-  <ol>
-    {posts.map((post) => <Post 
-      key={post.data.id} 
-      data={post.data} 
-      />
-    )}
-  </ol>
-)
-
-const Post = ({ data }) => {
-  const {
-    title,
-    author,
-    selftext
-  } = data
-
-  return (
-    <li>
-      <h2>{title}</h2>
-      <h3>{author}</h3>
-      <p>{selftext.slice(0, 600)}</p>
-    </li>
   )
 }
 
