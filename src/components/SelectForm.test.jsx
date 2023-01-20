@@ -11,14 +11,14 @@ describe('SelectForm', () => {
   it('renders a form with a label', () => {
     render(<SelectForm formData={mockData}/>)
 
-    expect(screen.getByLabelText('Select by topic:')).toBeDefined()
+    expect(screen.getByText('Select by topic:')).toBeDefined()
   })
 
   it('fires an event handler when the button is clicked', () => {
     const eventHandler = vi.fn()
     render(<SelectForm onSelect={eventHandler} formData={mockData} />)
     
-    fireEvent.click(screen.getByRole('button'))
+    fireEvent.click(screen.getByText('Get New Posts'))
     expect(eventHandler).toHaveBeenCalledOnce()
   })
 })
