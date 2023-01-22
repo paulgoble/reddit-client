@@ -11,7 +11,7 @@ function App() {
   return (
     <div id="app">
       <header id="header">
-        <img height="80px" width="80px"
+        <img height="90px" width="90px"
             src="/reddit-logo-adjusted.svg"
             alt="reddit logo"
             />

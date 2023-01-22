@@ -21,7 +21,7 @@ const SelectForm = ({ onSelect, formData }) => {
   const styles = {
     labelStyles: {
       color: "#fff",
-      marginRight: '0.6em',
+      marginRight: '0.4em',
       fontSize: "23px;"
     },
     selectStyles: {
@@ -34,10 +34,9 @@ const SelectForm = ({ onSelect, formData }) => {
   return (
     <FormGroup row>
       <InputLabel id="form-label" sx={styles.labelStyles}>
-        Select by topic:
       </InputLabel>
 
-      <Select labelid="form-label" value={value}
+      <Select labelid="form-label" id="select" value={value}
         onChange={handleChange} sx={styles.selectStyles}
       >
         {formData.map((data, index) => (
