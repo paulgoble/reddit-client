@@ -3,48 +3,39 @@ import {
   FormGroup,
   Select,
   MenuItem,
-  Button,
-  InputLabel
+  Button
 } from '@mui/material'
 
-const SelectForm = ({ onSelect, formData }) => {
+const SelectForm = ({ formData }) => {
   const [value, setValue] = React.useState(0)
 
   const handleChange = (event) => {
     setValue(event.target.value)
   }
 
-  const handleSubmit = (event) => {
-    onSelect(formData[value])
-  }
-
-  const styles = {
-    labelStyles: {
-      color: "#fff",
-      marginRight: '0.4em',
-      fontSize: "23px;"
-    },
-    selectStyles: {
-      backgroundColor: '#fff',
-      marginRight: '1.6em',
-      height: '2.2em'
-    }
+  const selectStyles = {
+    backgroundColor: '#fff',
+    marginRight: '1.6em',
+    height: '2.2em'
   }
   
   return (
     <FormGroup row>
-      <InputLabel id="form-label" sx={styles.labelStyles}>
-      </InputLabel>
-
-      <Select labelid="form-label" id="select" value={value}
-        onChange={handleChange} sx={styles.selectStyles}
+      <Select id="select"
+        value={value}
+        onChange={handleChange}
+        sx={selectStyles}
       >
         {formData.map((data, index) => (
-          <MenuItem key={index} value={index}>{data}</MenuItem>
+          <MenuItem key={index} value={index}>
+            {data}
+          </MenuItem>
         ))}
       </Select>
-
-      <Button variant="contained" onClick={handleSubmit}>
+      <Button 
+        variant="contained"
+        href={`/${formData[value]}`}
+      >
         Get New Posts
       </Button>
     </FormGroup>

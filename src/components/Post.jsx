@@ -4,7 +4,6 @@ import CommentIcon from '@mui/icons-material/Comment'
 
 const PostTitle = ({ title, score, num_comments }) => (
   <div className="post-title" >
-    {title}
     <div className="icons">
       <span className="icon">
         <FavoriteIcon color={"secondary"} />{score}
@@ -13,6 +12,7 @@ const PostTitle = ({ title, score, num_comments }) => (
         <CommentIcon />{num_comments}
       </span>
     </div>
+    {title}
   </div>
 )
 

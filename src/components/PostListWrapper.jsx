@@ -1,14 +1,17 @@
 import { PostList } from './PostList'
 import { useGetDataQuery } from '../api/apiSlice'
+import { useParams } from 'react-router-dom'
 
-const PostListWrapper = ({ userInput }) => {
+const PostListWrapper = () => {
+  const { endpoint } = useParams()
+
   const {
     data: posts,
     isLoading,
     isSuccess,
     isError,
     error
-  } = useGetDataQuery(userInput)
+  } = useGetDataQuery(endpoint)
   
   let content
   if (isLoading) {

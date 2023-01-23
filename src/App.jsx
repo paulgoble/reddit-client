@@ -1,25 +1,21 @@
 import React from 'react'
 import SelectForm from './components/SelectForm'
-import PostListWrapper from './components/PostListWrapper'
+import { Outlet } from 'react-router-dom'
 import './App.css'
 
 const formData = ['r/javascript', 'r/node', 'r/programming', 'r/reactjs', 'r/webdev']
 
-function App() {
-  const [userInput, setUserInput] = React.useState(null)
-  
-  return (
-    <div id="app">
-      <header id="header">
-        <img height="90px" width="90px"
-            src="/reddit-logo-adjusted.svg"
-            alt="reddit logo"
-            />
-        <SelectForm onSelect={setUserInput} formData={formData} />
-      </header>
-      {userInput ? <PostListWrapper userInput={userInput}/> : null}
-    </div>
-  )
-}
+const App = () => (
+  <div id="app">
+    <header id="header">
+      <img height="90px" width="90px"
+          src="/reddit-logo-adjusted.svg"
+          alt="reddit logo"
+      />
+      <SelectForm formData={formData} />
+    </header>
+    <Outlet />
+  </div>
+)
 
 export default App

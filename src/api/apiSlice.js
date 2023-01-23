@@ -7,7 +7,7 @@ export const apiSlice = createApi({
   }),
   endpoints: (builder) => ({
     getData: builder.query({
-      query: (userInput) => `/${userInput}.json`,
+      query: (endpoint) => `/r/${endpoint}.json`,
       transformResponse: (response) => response.data.children
     }),
     getPostData: builder.query({
