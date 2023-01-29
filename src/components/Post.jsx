@@ -17,7 +17,8 @@ const PostTitle = ({ title, score, num_comments }) => (
   </div>
 )
 
-export const Post = ({ data, kind }) => {
+export const Post = ({ data, kind, replies }) => {
+  const children = replies?.data?.children || []
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -64,9 +65,21 @@ export const Post = ({ data, kind }) => {
               href={url_overridden_by_dest}
             >
               {url_overridden_by_dest}
-            </a>}
+            </a>
+          }
         </CardContent>
       </Card>
+      <ul id="reply-list">
+      {children.map((post) => <Post 
+          key={post.data.id} 
+          data={post.data} 
+          kind={post.kind}
+          replies={post.kind === 't1' ?
+            post.data.replies : null
+          }
+        />
+      )}
+    </ul>
     </li>
   )
 }

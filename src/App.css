@@ -8,9 +8,13 @@ body {
   background-color: #e6e4de;
 }
 
+#post-list {
+  padding-right: 3em;
+}
+
 .post {
   cursor: pointer;
-  margin: 1.15em 4.5em;
+  margin: 1.15em 0 0 3em;
   list-style: none;
   max-width: 1000px;
 }
@@ -33,7 +37,7 @@ body {
 .icon {
   padding-left: 10px;
   margin-bottom: 5px;
-  width: 65px;
+  width: 75px;
   font-size: medium;
 }
 
@@ -61,10 +65,13 @@ body {
   }
   #header img {
     margin-bottom: 8px;
-    margin-left: 30px;
+    margin-left: 22px;
+  }
+  #post-list {
+    padding-right: 10px;
   }
   .post {
-    margin: 1.15em 15px;
+    margin: 1.15em 0 0 10px;
   }
   .post-title {
     flex-direction: column-reverse;

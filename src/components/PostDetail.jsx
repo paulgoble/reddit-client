@@ -32,8 +32,11 @@ export const PostDetail = () => {
           key={post.data.id} 
           data={post.data} 
           kind={post.kind}
-          />
-        )}
+          replies={post.kind === 't1' ?
+            post.data.replies : null
+          }
+        />
+      )}
     </ul>
   }
 
