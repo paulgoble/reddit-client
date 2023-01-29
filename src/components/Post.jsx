@@ -1,3 +1,4 @@
+import { useNavigate, useLocation } from "react-router-dom"
 import { Card, CardContent, CardHeader } from "@mui/material"
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import CommentIcon from '@mui/icons-material/Comment'
@@ -16,7 +17,17 @@ const PostTitle = ({ title, score, num_comments }) => (
   </div>
 )
 
-export const Post = ({ data, kind, onClick }) => {
+export const Post = ({ data, kind }) => {
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const onClick = (URI) => {
+    const pathname = URI.slice(0, -1)
+    if (pathname !== location.pathname) {
+      navigate(pathname)
+    }
+  }
+
   const {
     title,
     author,
@@ -28,7 +39,7 @@ export const Post = ({ data, kind, onClick }) => {
   } = data
 
   return (
-    <li className="post" onClick={() => onClick(data.url)}>
+    <li className="post" onClick={() => onClick(data.permalink)}>
       <Card variant="elevation" elevation={4}>
         <CardHeader 
           title={
@@ -48,7 +59,12 @@ export const Post = ({ data, kind, onClick }) => {
           {data.is_video ? 
             <video width='400' controls>
               <source src={data.media.reddit_video.scrubber_media_url} />
-            </video> : <a>{url_overridden_by_dest}</a>}
+            </video> : 
+            <a target="_blank"
+              href={url_overridden_by_dest}
+            >
+              {url_overridden_by_dest}
+            </a>}
         </CardContent>
       </Card>
     </li>

@@ -1,14 +1,22 @@
 import { useGetPostDataQuery } from "../api/apiSlice"
+import { useParams } from "react-router-dom"
 import { Post } from "./Post"
 
-export const PostDetail = ({ endpoint }) => {
+export const PostDetail = () => {
+  const { sub, path, post, comment } = useParams()
+
+  let URI = `${sub}/comments/${path}/${post}`
+  if (comment) {
+    URI = URI.concat(`/${comment}`)
+  }
+
   const {
     data: posts,
     isLoading,
     isSuccess,
     isError,
     error
-  } = useGetPostDataQuery(endpoint)
+  } = useGetPostDataQuery(URI)
 
   let content
   if (isLoading) {
@@ -24,7 +32,6 @@ export const PostDetail = ({ endpoint }) => {
           key={post.data.id} 
           data={post.data} 
           kind={post.kind}
-          onClick={() => null}
           />
         )}
     </ul>
